@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SilicaTilesEditor")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Horse Isle Map Editor")]
+[assembly: AssemblyDescription("Map Editor for Horse Isle")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SilicaTilesEditor")]
+[assembly: AssemblyCompany("SilicaAndPina")]
+[assembly: AssemblyProduct("HISP")]
 [assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

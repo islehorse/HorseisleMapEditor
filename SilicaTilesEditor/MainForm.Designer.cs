@@ -48,9 +48,9 @@ namespace SilicaTilesEditor
             this.tileset7 = new System.Windows.Forms.ToolStripMenuItem();
             this.lookingAt = new System.Windows.Forms.Label();
             this.layout = new System.Windows.Forms.TableLayoutPanel();
-            this.selTileId = new System.Windows.Forms.Label();
             this.tileSelector = new SilicaTilesEditor.TileSelectorControl();
             this.tileList = new SilicaTilesEditor.TileMapEditorControl();
+            this.selTileId = new System.Windows.Forms.Label();
             this.toolMenu.SuspendLayout();
             this.layout.SuspendLayout();
             this.SuspendLayout();
@@ -234,16 +234,6 @@ namespace SilicaTilesEditor
             this.layout.Size = new System.Drawing.Size(1107, 487);
             this.layout.TabIndex = 4;
             // 
-            // selTileId
-            // 
-            this.selTileId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.selTileId.AutoSize = true;
-            this.selTileId.Location = new System.Drawing.Point(12, 515);
-            this.selTileId.Name = "selTileId";
-            this.selTileId.Size = new System.Drawing.Size(89, 13);
-            this.selTileId.TabIndex = 5;
-            this.selTileId.Text = "Seleted Tile ID: 1";
-            // 
             // tileSelector
             // 
             this.tileSelector.AutoScroll = true;
@@ -263,6 +253,16 @@ namespace SilicaTilesEditor
             this.tileList.Size = new System.Drawing.Size(852, 481);
             this.tileList.TabIndex = 1;
             // 
+            // selTileId
+            // 
+            this.selTileId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.selTileId.AutoSize = true;
+            this.selTileId.Location = new System.Drawing.Point(12, 515);
+            this.selTileId.Name = "selTileId";
+            this.selTileId.Size = new System.Drawing.Size(89, 13);
+            this.selTileId.TabIndex = 5;
+            this.selTileId.Text = "Seleted Tile ID: 1";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -272,8 +272,9 @@ namespace SilicaTilesEditor
             this.Controls.Add(this.layout);
             this.Controls.Add(this.lookingAt);
             this.Controls.Add(this.toolMenu);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
-            this.Text = "Horse Isle Tile Editor";
+            this.Text = "Horse Isle Map Editor";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.toolMenu.ResumeLayout(false);
             this.toolMenu.PerformLayout();

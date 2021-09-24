@@ -7,7 +7,7 @@
     <ProjectGuid>{286BE9D8-B723-43A5-A9BA-6769D4FD36DB}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>SilicaTilesEditor</RootNamespace>
-    <AssemblyName>SilicaTilesEditor</AssemblyName>
+    <AssemblyName>Horse Isle Map Editor</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -34,6 +34,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon0.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
@@ -130,6 +133,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="images\474_EXTOVERLAY-CLWD.png.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="icon0.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
