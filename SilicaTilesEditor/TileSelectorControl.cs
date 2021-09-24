@@ -35,13 +35,35 @@ namespace SilicaTilesEditor
 
             SelectedTileid = ((SelTileY * maxX) + SelTileX) + 1;
 
+            bool change = false;
             if(SelectedTileid > 0xFF)
             {
                 SelectedTileid = 0xFF;
-                SelTileX = (SelectedTileid % maxX) -1;
-                SelTileY = SelectedTileid / maxX;
+                change = true;
             }
 
+            if(!Program.form.tileList.DisplayOverlay)
+            {
+                if(SelectedTileid > Tileset.TerrainList.Length)
+                {
+                    SelectedTileid = Tileset.TerrainList.Length;
+                    change = true;
+                }
+            }
+            else
+            {
+                if (SelectedTileid > Tileset.JoinedTileset.Length)
+                {
+                    SelectedTileid = Tileset.JoinedTileset.Length;
+                    change = true;
+                }
+            }
+
+            if (change)
+            {
+                SelTileX = (SelectedTileid % maxX) - 1;
+                SelTileY = SelectedTileid / maxX;
+            }
             if (!(oldSelTileX == SelTileX && oldSelTileY == SelTileY))
             {
                 Program.form.selTileId.Text = "Seleted Tile ID: " + SelectedTileid;

@@ -32,6 +32,12 @@ namespace SilicaTilesEditor
 
             selectedTileX = Convert.ToInt32(Math.Floor((float)HorizontalScroll.Value / 32.0)) + SelTileX;
             selectedTileY = Convert.ToInt32(Math.Floor((float)VerticalScroll.Value / 32.0)) + SelTileY;
+
+            if (selectedTileX > Map.Width)
+                selectedTileX = Map.Width;
+            if (selectedTileY > Map.Height)
+                selectedTileX = Map.Height;
+
             if (!(oldSelTileX == SelTileX && oldSelTileY == SelTileY))
             {
 

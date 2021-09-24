@@ -82,22 +82,23 @@ namespace SilicaTilesEditor
             // newItem
             // 
             this.newItem.Name = "newItem";
-            this.newItem.Size = new System.Drawing.Size(121, 22);
+            this.newItem.Size = new System.Drawing.Size(180, 22);
             this.newItem.Text = "New File";
             this.newItem.Click += new System.EventHandler(this.newItem_Click);
             // 
             // loadItem
             // 
             this.loadItem.Name = "loadItem";
-            this.loadItem.Size = new System.Drawing.Size(121, 22);
+            this.loadItem.Size = new System.Drawing.Size(180, 22);
             this.loadItem.Text = "Load File";
             this.loadItem.Click += new System.EventHandler(this.loadItem_Click);
             // 
             // saveItem
             // 
             this.saveItem.Name = "saveItem";
-            this.saveItem.Size = new System.Drawing.Size(121, 22);
+            this.saveItem.Size = new System.Drawing.Size(180, 22);
             this.saveItem.Text = "Save File";
+            this.saveItem.Click += new System.EventHandler(this.saveItem_Click);
             // 
             // layerMenu
             // 

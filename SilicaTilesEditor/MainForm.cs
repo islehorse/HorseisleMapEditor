@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SilicaTilesEditor
@@ -19,7 +12,18 @@ namespace SilicaTilesEditor
 
         private void newItem_Click(object sender, EventArgs e)
         {
-
+            this.Enabled = false;
+            NewMapForm mapForm = new NewMapForm();
+            DialogResult res = mapForm.ShowDialog();
+            this.Enabled = true;
+            if (res == DialogResult.OK)
+            {
+                MessageBox.Show("Map Created", "Map Creation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
+                tileList.UpdateScroll();
+                tileSelector.CalculateScroll();
+                tileSelector.Invalidate();
+            }
         }
 
         private void loadItem_Click(object sender, EventArgs e)
@@ -32,7 +36,8 @@ namespace SilicaTilesEditor
                 Map.OpenMap(loadFileDg.FileName);
                 tileList.UpdateScroll();
                 tileList.Invalidate();
-
+                tileSelector.CalculateScroll();
+                tileSelector.Invalidate();
             }
         }
         private void MainForm_Load(object sender, EventArgs e)
@@ -43,6 +48,7 @@ namespace SilicaTilesEditor
             layout.ColumnStyles[0].Width = (32*7) + SystemInformation.VerticalScrollBarWidth;
             tileset0.Checked = true;
             tileList.ExtOverlay = 0;
+            tileList.UpdateScroll();
             tileSelector.CalculateScroll();
             tileSelector.Invalidate();
         }
@@ -154,5 +160,17 @@ namespace SilicaTilesEditor
 
         }
 
+        private void saveItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDg = new SaveFileDialog();
+            saveFileDg.Filter = "Map Data Files|*.MAP";
+            saveFileDg.Title = "Select Map File";
+            saveFileDg.FileName = Map.LoadedMap;
+            if (saveFileDg.ShowDialog() == DialogResult.OK)
+            {
+                Map.SaveMap(saveFileDg.FileName);
+                MessageBox.Show("File saved successfully.", "Save", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
     }
 }

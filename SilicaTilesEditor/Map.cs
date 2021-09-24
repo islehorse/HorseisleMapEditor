@@ -52,6 +52,43 @@ namespace SilicaTilesEditor
                 return 1;
         }
 
+        public static void SaveMap(string MapFile)
+        {
+            byte[] worldMap = new byte[8 + (Width * Height) * 2];
+
+            byte[] WidthInt = BitConverter.GetBytes(Width);
+            byte[] HeightInt = BitConverter.GetBytes(Height);
+            Array.ConstrainedCopy(WidthInt, 0, worldMap, 0, 4);
+            Array.ConstrainedCopy(HeightInt, 0, worldMap, 4, 4);
+
+            int ii = 8;
+
+            for (int i = 0; i < MapData.Length; i++)
+            {
+                worldMap[ii] = oMapData[i];
+                worldMap[ii + 1] = MapData[i];
+                ii += 2;
+            }
+
+            LoadedMap = MapFile;
+            MapLoaded = true;
+            File.WriteAllBytes(MapFile, worldMap);
+        }
+        public static void CreateMap(int width, int height)
+        {
+            Width = width;
+            Height = height;
+            MapData = new byte[width * height];
+            oMapData = new byte[width * height];
+            for (int i = 0; i < MapData.Length; i++)
+            {
+                oMapData[i] = 1;
+                MapData[i] = 1;
+            }
+
+            LoadedMap = "NEW.MAP";
+            MapLoaded = true;
+        }
         public static void OpenMap(string MapFile)
         {
             byte[] worldMap = File.ReadAllBytes(MapFile);
@@ -69,8 +106,6 @@ namespace SilicaTilesEditor
                 MapData[i] = worldMap[ii + 1];
                 ii += 2;
             }
-
-            worldMap = null;
 
             LoadedMap = MapFile;
             MapLoaded = true;
