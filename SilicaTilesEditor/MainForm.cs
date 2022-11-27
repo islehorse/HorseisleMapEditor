@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SilicaTilesEditor
@@ -42,9 +44,8 @@ namespace SilicaTilesEditor
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
-            Tileset.ReadTerrain();
-            Tileset.ReadOverlay();
-            Tileset.ReadExtOverlay();
+            Tileset.ReadAllTiles();
+
             layout.ColumnStyles[0].Width = (32*7) + SystemInformation.VerticalScrollBarWidth;
             tileset0.Checked = true;
             tileList.ExtOverlay = 0;

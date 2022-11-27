@@ -1,6 +1,9 @@
 ﻿using SilicaTilesEditor.Properties;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
 namespace SilicaTilesEditor
 {
@@ -18,7 +21,6 @@ namespace SilicaTilesEditor
         public static Bitmap[] ExtJngl = new Bitmap[((Resources.Tileset5.Height / 48) * (Resources.Tileset5.Width / 32))];
         public static Bitmap[] ExtClwd = new Bitmap[((Resources.Tileset6.Height / 48) * (Resources.Tileset6.Width / 32))];
         public static Bitmap[] ExtVolc = new Bitmap[((Resources.Tileset7.Height / 48) * (Resources.Tileset7.Width / 32))];
-
         public static Bitmap[] JoinedTileset
         {
             get
@@ -79,7 +81,19 @@ namespace SilicaTilesEditor
             }
         }
 
-        public static void ReadTerrain()
+        public static void ReadAllTiles()
+        {
+            Task[] tileTasks = new Task[3];
+
+            tileTasks[0] = Task.Run(() => readTerrain());
+            tileTasks[1] = Task.Run(() => readOverlay());
+            tileTasks[2] = Task.Run(() => readExtOverlay());
+
+            Task.WaitAll(tileTasks);
+            ReadAllTerrain = true;
+            ReadAllOverlay = true;
+        }
+        private static void readTerrain()
         {
             Console.WriteLine("Reading Terrain.png...");
             int i = 0;
@@ -97,10 +111,9 @@ namespace SilicaTilesEditor
                     CopyRegionIntoImage(Resources.TerrainTileset, srcRect, TerrainList[i], dstRect);
                 }
             }
-            ReadAllTerrain = true;
         }
 
-        public static void ReadExtOverlay()
+        private static void readExtOverlay()
         {
             Rectangle dstRect = new Rectangle(0, 0, 32, 48);
             Rectangle srcRect = new Rectangle(0, 0, 32, 48);
@@ -126,7 +139,7 @@ namespace SilicaTilesEditor
                 Console.WriteLine("Total Tiles Read: " + i.ToString());
             }
         }
-        public static void ReadOverlay()
+        private static void readOverlay()
         {
             Console.WriteLine("Reading Overlay.png...");
             int i = 0;
