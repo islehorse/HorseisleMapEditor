@@ -7,30 +7,30 @@ namespace SilicaTilesEditor
 {
     class Tileset
     {
-        public static Bitmap CacheTerrainTileset = Resources.TerrainTileset;
-        public static Bitmap CacheOverlayTileset = Resources.OverlayTileset;
-        public static Bitmap CacheOverlayTileset0 = Resources.Tileset0;
-        public static Bitmap CacheOverlayTileset1 = Resources.Tileset1;
-        public static Bitmap CacheOverlayTileset2 = Resources.Tileset2;
-        public static Bitmap CacheOverlayTileset3 = Resources.Tileset3;
-        public static Bitmap CacheOverlayTileset4 = Resources.Tileset4;
-        public static Bitmap CacheOverlayTileset5 = Resources.Tileset5;
-        public static Bitmap CacheOverlayTileset6 = Resources.Tileset6;
-        public static Bitmap CacheOverlayTileset7 = Resources.Tileset7;
+        private static Bitmap cacheTerrainTileset = Resources.TerrainTileset;
+        private static Bitmap cacheOverlayTileset = Resources.OverlayTileset;
+        private static Bitmap cacheOverlayTileset0 = Resources.Tileset0;
+        private static Bitmap cacheOverlayTileset1 = Resources.Tileset1;
+        private static Bitmap cacheOverlayTileset2 = Resources.Tileset2;
+        private static Bitmap cacheOverlayTileset3 = Resources.Tileset3;
+        private static Bitmap cacheOverlayTileset4 = Resources.Tileset4;
+        private static Bitmap cacheOverlayTileset5 = Resources.Tileset5;
+        private static Bitmap cacheOverlayTileset6 = Resources.Tileset6;
+        private static Bitmap cacheOverlayTileset7 = Resources.Tileset7;
 
 
-        public static Bitmap[] TerrainList = new Bitmap[((CacheTerrainTileset.Height / 32) * (CacheTerrainTileset.Width / 32)) + 1];
+        public static Bitmap[] TerrainList = new Bitmap[((cacheTerrainTileset.Height / 32) * (cacheTerrainTileset.Width / 32)) + 1];
         public static Bitmap[] OverlayList = new Bitmap[192 + 1];
-        public static Bitmap[] ExtOverlays = new Bitmap[8] { CacheOverlayTileset0, CacheOverlayTileset1, CacheOverlayTileset2, CacheOverlayTileset3, CacheOverlayTileset4, CacheOverlayTileset5, CacheOverlayTileset6, CacheOverlayTileset7 };
+        public static Bitmap[] ExtOverlays = new Bitmap[8] { cacheOverlayTileset0, cacheOverlayTileset1, cacheOverlayTileset2, cacheOverlayTileset3, cacheOverlayTileset4, cacheOverlayTileset5, cacheOverlayTileset6, cacheOverlayTileset7 };
 
-        public static Bitmap[] ExtNorm = new Bitmap[((CacheOverlayTileset0.Height / 48) * (CacheOverlayTileset0.Width / 32))];
-        public static Bitmap[] ExtSnow = new Bitmap[((CacheOverlayTileset1.Height / 48) * (CacheOverlayTileset1.Width / 32))];
-        public static Bitmap[] ExtSand = new Bitmap[((CacheOverlayTileset2.Height / 48) * (CacheOverlayTileset2.Width / 32))];
-        public static Bitmap[] ExtPirt = new Bitmap[((CacheOverlayTileset3.Height / 48) * (CacheOverlayTileset3.Width / 32))];
-        public static Bitmap[] ExtFlwr = new Bitmap[((CacheOverlayTileset4.Height / 48) * (CacheOverlayTileset4.Width / 32))];
-        public static Bitmap[] ExtJngl = new Bitmap[((CacheOverlayTileset5.Height / 48) * (CacheOverlayTileset5.Width / 32))];
-        public static Bitmap[] ExtClwd = new Bitmap[((CacheOverlayTileset6.Height / 48) * (CacheOverlayTileset6.Width / 32))];
-        public static Bitmap[] ExtVolc = new Bitmap[((CacheOverlayTileset7.Height / 48) * (CacheOverlayTileset7.Width / 32))];
+        public static Bitmap[] ExtNorm = new Bitmap[((cacheOverlayTileset0.Height / 48) * (cacheOverlayTileset0.Width / 32))];
+        public static Bitmap[] ExtSnow = new Bitmap[((cacheOverlayTileset1.Height / 48) * (cacheOverlayTileset1.Width / 32))];
+        public static Bitmap[] ExtSand = new Bitmap[((cacheOverlayTileset2.Height / 48) * (cacheOverlayTileset2.Width / 32))];
+        public static Bitmap[] ExtPirt = new Bitmap[((cacheOverlayTileset3.Height / 48) * (cacheOverlayTileset3.Width / 32))];
+        public static Bitmap[] ExtFlwr = new Bitmap[((cacheOverlayTileset4.Height / 48) * (cacheOverlayTileset4.Width / 32))];
+        public static Bitmap[] ExtJngl = new Bitmap[((cacheOverlayTileset5.Height / 48) * (cacheOverlayTileset5.Width / 32))];
+        public static Bitmap[] ExtClwd = new Bitmap[((cacheOverlayTileset6.Height / 48) * (cacheOverlayTileset6.Width / 32))];
+        public static Bitmap[] ExtVolc = new Bitmap[((cacheOverlayTileset7.Height / 48) * (cacheOverlayTileset7.Width / 32))];
         public static Bitmap[] JoinedTileset
         {
             get
@@ -110,15 +110,15 @@ namespace SilicaTilesEditor
             Rectangle dstRect = new Rectangle(0, 0, 32, 32);
             Rectangle srcRect = new Rectangle(0, 0, 32, 32);
 
-            for (int y = 0; y < (CacheTerrainTileset.Height/32); y++)
+            for (int y = 0; y < (cacheTerrainTileset.Height/32); y++)
             {
-                for (int x = 0; x < (CacheTerrainTileset.Width / 32); x++)
+                for (int x = 0; x < (cacheTerrainTileset.Width / 32); x++)
                 {
                     i++;
                     TerrainList[i] = new Bitmap(32, 32);
                     srcRect.X = x * 32;
                     srcRect.Y = y * 32;
-                    CopyRegionIntoImage(CacheTerrainTileset, srcRect, TerrainList[i], dstRect);
+                    CopyRegionIntoImage(cacheTerrainTileset, srcRect, TerrainList[i], dstRect);
                 }
             }
         }
@@ -160,14 +160,14 @@ namespace SilicaTilesEditor
 
             for (int y = 0; y < OVERLAY_SIZE; y++)
             {
-                for (int x = 0; x < (CacheOverlayTileset.Width / 32); x++)
+                for (int x = 0; x < (cacheOverlayTileset.Width / 32); x++)
                 {
                     i++;
                     OverlayList[i] = new Bitmap(32, 48);
                     srcRect.X = x * 32;
                     srcRect.Y = y * 48;
 
-                    CopyRegionIntoImage(CacheOverlayTileset, srcRect, OverlayList[i], dstRect);
+                    CopyRegionIntoImage(cacheOverlayTileset, srcRect, OverlayList[i], dstRect);
                 }
             }
         }
