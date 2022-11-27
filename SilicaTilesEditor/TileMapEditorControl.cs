@@ -46,7 +46,7 @@ namespace SilicaTilesEditor
 
                 this.Invalidate();
                 if(Map.MapLoaded)
-                    Program.form.lookingAt.Text = "Looking at: " + selectedTileX + "," + selectedTileY + "(" + Map.GetTileId(selectedTileX, selectedTileY, false) + ":" + Map.GetTileId(selectedTileX, selectedTileY, true) + ")";
+                    Program.form.lookingAt.Text = "Looking at: " + selectedTileX + "," + selectedTileY + "(" + (Map.GetTileId(selectedTileX, selectedTileY, false) - 1) + ":" + (Map.GetTileId(selectedTileX, selectedTileY, true) - 1) + ")";
             }
 
         }
@@ -89,7 +89,7 @@ namespace SilicaTilesEditor
             int relY = 0;
             if (Map.MapLoaded)
             {
-
+                /* Draw Terrain Tiles */
                 for (int y = offsetY; y < (tlistHeight + offsetY)+1; y++)
                 {
                     relX = -1;
@@ -105,7 +105,7 @@ namespace SilicaTilesEditor
                     }
                     relY++;
                 }
-
+                /* Draw Overlay Tiles */
                 if (DisplayOverlay)
                 {
 
@@ -118,10 +118,11 @@ namespace SilicaTilesEditor
                         for (int x = offsetX; x < (tlistWidth + offsetX) + 1; x++)
                         {
                             relX++;
-                            int tileId = Map.GetTileId(x, y, true) - 1;
+                            int tileId = Map.GetTileId(x, y, true) -1;
                             Bitmap Tile = null;
                             if (tileId >= Tileset.OverlayList.Length)
                             {
+                                /* Draw Extenal Overlay Tiles */
                                 tileId -= Tileset.OverlayList.Length;
                                 Tile = Tileset.GetTileset(ExtOverlay)[tileId];
                             }

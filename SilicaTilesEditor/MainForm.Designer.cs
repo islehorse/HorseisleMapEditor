@@ -48,9 +48,9 @@ namespace SilicaTilesEditor
             this.tileset7 = new System.Windows.Forms.ToolStripMenuItem();
             this.lookingAt = new System.Windows.Forms.Label();
             this.layout = new System.Windows.Forms.TableLayoutPanel();
+            this.selTileId = new System.Windows.Forms.Label();
             this.tileSelector = new SilicaTilesEditor.TileSelectorControl();
             this.tileList = new SilicaTilesEditor.TileMapEditorControl();
-            this.selTileId = new System.Windows.Forms.Label();
             this.toolMenu.SuspendLayout();
             this.layout.SuspendLayout();
             this.SuspendLayout();
@@ -82,21 +82,21 @@ namespace SilicaTilesEditor
             // newItem
             // 
             this.newItem.Name = "newItem";
-            this.newItem.Size = new System.Drawing.Size(180, 22);
+            this.newItem.Size = new System.Drawing.Size(121, 22);
             this.newItem.Text = "New File";
             this.newItem.Click += new System.EventHandler(this.newItem_Click);
             // 
             // loadItem
             // 
             this.loadItem.Name = "loadItem";
-            this.loadItem.Size = new System.Drawing.Size(180, 22);
+            this.loadItem.Size = new System.Drawing.Size(121, 22);
             this.loadItem.Text = "Load File";
             this.loadItem.Click += new System.EventHandler(this.loadItem_Click);
             // 
             // saveItem
             // 
             this.saveItem.Name = "saveItem";
-            this.saveItem.Size = new System.Drawing.Size(180, 22);
+            this.saveItem.Size = new System.Drawing.Size(121, 22);
             this.saveItem.Text = "Save File";
             this.saveItem.Click += new System.EventHandler(this.saveItem_Click);
             // 
@@ -234,6 +234,16 @@ namespace SilicaTilesEditor
             this.layout.Size = new System.Drawing.Size(1107, 487);
             this.layout.TabIndex = 4;
             // 
+            // selTileId
+            // 
+            this.selTileId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.selTileId.AutoSize = true;
+            this.selTileId.Location = new System.Drawing.Point(12, 515);
+            this.selTileId.Name = "selTileId";
+            this.selTileId.Size = new System.Drawing.Size(89, 13);
+            this.selTileId.TabIndex = 5;
+            this.selTileId.Text = "Seleted Tile ID: 0";
+            // 
             // tileSelector
             // 
             this.tileSelector.AutoScroll = true;
@@ -252,16 +262,6 @@ namespace SilicaTilesEditor
             this.tileList.Name = "tileList";
             this.tileList.Size = new System.Drawing.Size(852, 481);
             this.tileList.TabIndex = 1;
-            // 
-            // selTileId
-            // 
-            this.selTileId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.selTileId.AutoSize = true;
-            this.selTileId.Location = new System.Drawing.Point(12, 515);
-            this.selTileId.Name = "selTileId";
-            this.selTileId.Size = new System.Drawing.Size(89, 13);
-            this.selTileId.TabIndex = 5;
-            this.selTileId.Text = "Seleted Tile ID: 1";
             // 
             // MainForm
             // 

@@ -33,7 +33,7 @@ namespace SilicaTilesEditor
             else
                 SelTileY = Convert.ToInt32(Math.Floor((float)VerticalScroll.Value / 48.0)) + Convert.ToInt32(Math.Floor((float)(e.Y + tinyOffsetY) / 48.0));
 
-            SelectedTileid = ((SelTileY * maxX) + SelTileX) + 1;
+            SelectedTileid = ((SelTileY * maxX) + SelTileX);
 
             bool change = false;
             if(SelectedTileid > 0xFF)
