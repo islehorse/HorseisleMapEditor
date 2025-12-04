@@ -1,6 +1,10 @@
 ﻿using SilicaTilesEditor.Properties;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 
 namespace SilicaTilesEditor
@@ -58,11 +62,45 @@ namespace SilicaTilesEditor
 
         public static Boolean ReadAllTerrain = false;
         public static Boolean ReadAllOverlay = false;
+        private static List<Isle> isleList = new List<Isle>();
+
+        public static void ImportPlacesJson(string file)
+        {
+            string jsonData = File.ReadAllText(file);
+            JsonNode node = JsonNode.Parse(jsonData);
+
+            int totalIsles = node["places"]["isles"].AsArray().Count;
+            for (int i = 0; i < totalIsles; i++)
+            {
+                Isle isle = new Isle();
+                isle.StartX = ((int)node["places"]["isles"].AsArray()[i]["start_x"]);
+                isle.StartY = ((int)node["places"]["isles"].AsArray()[i]["start_y"]);
+                isle.EndX = ((int)node["places"]["isles"].AsArray()[i]["end_x"]);
+                isle.EndY = ((int)node["places"]["isles"].AsArray()[i]["end_y"]);
+                isle.Tileset = ((int)node["places"]["isles"].AsArray()[i]["tileset"]);
+                isle.Name = ((string)node["places"]["isles"].AsArray()[i]["name"]);
+
+                isleList.Add(isle);
+            }
+        }
         public static void CopyRegionIntoImage(Bitmap srcBitmap, Rectangle srcRegion, Bitmap destBitmap, Rectangle destRegion)
         {
             using (Graphics grD = Graphics.FromImage(destBitmap))
             {
                 grD.DrawImage(srcBitmap, destRegion, srcRegion, GraphicsUnit.Pixel);
+            }
+        }
+
+        public static int GetTileSetByPos(int x, int y, int ogTileset)
+        {
+            try
+            {
+                Isle isle = isleList.First(o => (x > o.StartX && x < o.EndX) && (y > o.StartY && y < o.EndY));
+                return isle.Tileset;
+            }
+            catch (Exception e)
+            {
+                return ogTileset;
             }
         }
 

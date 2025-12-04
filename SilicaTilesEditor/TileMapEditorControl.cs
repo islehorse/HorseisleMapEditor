@@ -7,6 +7,7 @@ namespace SilicaTilesEditor
     public class TileMapEditorControl : Panel
     {
         public bool DisplayOverlay = true;
+        public bool DisplayGrid = true;
         public int ExtOverlay = 0;
         public int SelTileX = 0;
         public int SelTileY = 0;
@@ -69,31 +70,30 @@ namespace SilicaTilesEditor
             Map.SetTileId(selectedTileX, selectedTileY, DisplayOverlay, Program.form.tileSelector.SelectedTileid);
             this.Invalidate();
         }
-        protected override void OnPaint(PaintEventArgs e)
+
+        public void RenderImage(Graphics g, Rectangle region, bool displayOverlay = true, bool displayGrid = false, bool displaySelected = false)
         {
-
-
-            Graphics g = e.Graphics;
             g.Clear(Color.Blue);
-            int offsetX = (this.HorizontalScroll.Value / 32);
-            int offsetY = (this.VerticalScroll.Value / 32);
 
-            int tinyOffsetX = (this.HorizontalScroll.Value % 32);
-            int tinyOffsetY = (this.VerticalScroll.Value % 32);
+            int offsetX = (region.X / 32);
+            int offsetY = (region.Y / 32);
 
-            int tlistHeight = (this.Size.Height / 32)+ 1;
-            int tlistWidth = (this.Size.Width / 32) + 1;
-            int rH = this.Size.Height;
-            int rW = this.Size.Width;
-            int relX;
+            int tinyOffsetX = (region.X % 32);
+            int tinyOffsetY = (region.Y % 32);
+
+            int tlistHeight = (region.Height / 32) + 1;
+            int tlistWidth = (region.Width / 32) + 1;
+            int rW = region.Width;
+            int rH = region.Height;
+            int relX = 0;
             int relY = 0;
             if (Map.MapLoaded)
             {
                 /* Draw Terrain Tiles */
-                for (int y = offsetY; y < (tlistHeight + offsetY)+1; y++)
+                for (int y = offsetY; y < (tlistHeight + offsetY) + 1; y++)
                 {
                     relX = -1;
-                    for (int x = offsetX; x < (tlistWidth + offsetX)+1; x++)
+                    for (int x = offsetX; x < (tlistWidth + offsetX) + 1; x++)
                     {
                         relX++;
                         int tileId = Map.GetTileId(x, y, false) - 1;
@@ -106,7 +106,7 @@ namespace SilicaTilesEditor
                     relY++;
                 }
                 /* Draw Overlay Tiles */
-                if (DisplayOverlay)
+                if (displayOverlay)
                 {
 
                     relX = 0;
@@ -118,13 +118,13 @@ namespace SilicaTilesEditor
                         for (int x = offsetX; x < (tlistWidth + offsetX) + 1; x++)
                         {
                             relX++;
-                            int tileId = Map.GetTileId(x, y, true) -1;
+                            int tileId = Map.GetTileId(x, y, true) - 1;
                             Bitmap Tile = null;
                             if (tileId >= Tileset.OverlayList.Length)
                             {
                                 /* Draw Extenal Overlay Tiles */
                                 tileId -= Tileset.OverlayList.Length;
-                                Tile = Tileset.GetTileset(ExtOverlay)[tileId];
+                                Tile = Tileset.GetTileset(Tileset.GetTileSetByPos(x, y, ExtOverlay))[tileId];
                             }
                             else
                             {
@@ -138,25 +138,37 @@ namespace SilicaTilesEditor
                         relY++;
                     }
                 }
+
+                Pen p = new Pen(Color.Black);
+                Pen wp = new Pen(Color.Aqua, 3);
+                if (displayGrid)
+                {
+                    for (int x = 0; x <= rW; x += 32)
+                        g.DrawLine(p, (x - tinyOffsetX), 0, (x - tinyOffsetX), rH);
+
+                    for (int y = 0; y <= rH; y += 32)
+                        g.DrawLine(p, 0, (y - tinyOffsetY), rW, (y - tinyOffsetY));
+                }
+
+                // Highlight selected tile
+                if (displaySelected)
+                {
+                    int exactX = (SelTileX * 32) - tinyOffsetX;
+                    int exactY = (SelTileY * 32) - tinyOffsetY;
+                    if (!DisplayOverlay)
+                        g.DrawRectangle(wp, exactX, exactY, 32, 32);
+                    else
+                        g.DrawRectangle(wp, exactX, exactY, 32, 48);
+
+                }
+
+                g.Flush();
             }
+        }
 
-            Pen p = new Pen(Color.Black);
-            Pen wp = new Pen(Color.Aqua,3);
-            for (int x = 0; x <= rW; x += 32)
-                g.DrawLine(p, (x - tinyOffsetX), 0, (x - tinyOffsetX), rH);
-
-            for (int y = 0; y <= rH; y += 32)
-                g.DrawLine(p, 0, (y - tinyOffsetY), rW, (y - tinyOffsetY));
-
-            // Highlight selected tile
-            int exactX = (SelTileX*32) - tinyOffsetX;
-            int exactY = (SelTileY*32) - tinyOffsetY;
-            if(!DisplayOverlay)
-                g.DrawRectangle(wp, exactX, exactY, 32, 32);
-            else
-                g.DrawRectangle(wp, exactX, exactY, 32, 48);
-
-            g.Flush();
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            RenderImage(e.Graphics, new Rectangle(this.HorizontalScroll.Value, this.VerticalScroll.Value, this.Size.Width, this.Size.Height), DisplayOverlay, DisplayGrid, true);
         }
     }
 }

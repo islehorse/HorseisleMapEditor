@@ -14,8 +14,8 @@ namespace SilicaTilesEditor
         public static string LoadedMap = "";
         public static bool MapLoaded = false;
 
-        public static int Width;
-        public static int Height;
+        public static int Width = 0;
+        public static int Height = 0;
 
         public static byte[] MapData;
         public static byte[] oMapData;

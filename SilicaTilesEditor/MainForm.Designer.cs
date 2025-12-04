@@ -46,9 +46,13 @@ namespace SilicaTilesEditor
             this.tileset5 = new System.Windows.Forms.ToolStripMenuItem();
             this.tileset6 = new System.Windows.Forms.ToolStripMenuItem();
             this.tileset7 = new System.Windows.Forms.ToolStripMenuItem();
+            this.importPlacelistjsonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lookingAt = new System.Windows.Forms.Label();
             this.layout = new System.Windows.Forms.TableLayoutPanel();
             this.selTileId = new System.Windows.Forms.Label();
+            this.viewMenu = new System.Windows.Forms.ToolStripDropDownButton();
+            this.displayGridToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.renderAsPNGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tileSelector = new SilicaTilesEditor.TileSelectorControl();
             this.tileList = new SilicaTilesEditor.TileMapEditorControl();
             this.toolMenu.SuspendLayout();
@@ -60,7 +64,8 @@ namespace SilicaTilesEditor
             this.toolMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileMenu,
             this.layerMenu,
-            this.tilesetMenu});
+            this.tilesetMenu,
+            this.viewMenu});
             this.toolMenu.Location = new System.Drawing.Point(0, 0);
             this.toolMenu.Name = "toolMenu";
             this.toolMenu.Size = new System.Drawing.Size(1107, 25);
@@ -133,11 +138,12 @@ namespace SilicaTilesEditor
             this.tileset4,
             this.tileset5,
             this.tileset6,
-            this.tileset7});
+            this.tileset7,
+            this.importPlacelistjsonToolStripMenuItem});
             this.tilesetMenu.Image = ((System.Drawing.Image)(resources.GetObject("tilesetMenu.Image")));
             this.tilesetMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tilesetMenu.Name = "tilesetMenu";
-            this.tilesetMenu.Size = new System.Drawing.Size(53, 22);
+            this.tilesetMenu.Size = new System.Drawing.Size(54, 22);
             this.tilesetMenu.Text = "Tileset";
             // 
             // tileset0
@@ -146,7 +152,7 @@ namespace SilicaTilesEditor
             this.tileset0.CheckOnClick = true;
             this.tileset0.CheckState = System.Windows.Forms.CheckState.Checked;
             this.tileset0.Name = "tileset0";
-            this.tileset0.Size = new System.Drawing.Size(146, 22);
+            this.tileset0.Size = new System.Drawing.Size(186, 22);
             this.tileset0.Text = "NORM Tileset";
             this.tileset0.Click += new System.EventHandler(this.tileset0_Click);
             // 
@@ -154,7 +160,7 @@ namespace SilicaTilesEditor
             // 
             this.tileset1.CheckOnClick = true;
             this.tileset1.Name = "tileset1";
-            this.tileset1.Size = new System.Drawing.Size(146, 22);
+            this.tileset1.Size = new System.Drawing.Size(186, 22);
             this.tileset1.Text = "SNOW Tileset";
             this.tileset1.Click += new System.EventHandler(this.tileset1_Click);
             // 
@@ -162,7 +168,7 @@ namespace SilicaTilesEditor
             // 
             this.tileset2.CheckOnClick = true;
             this.tileset2.Name = "tileset2";
-            this.tileset2.Size = new System.Drawing.Size(146, 22);
+            this.tileset2.Size = new System.Drawing.Size(186, 22);
             this.tileset2.Text = "SAND Tileset";
             this.tileset2.Click += new System.EventHandler(this.tileset2_Click);
             // 
@@ -170,7 +176,7 @@ namespace SilicaTilesEditor
             // 
             this.tileset3.CheckOnClick = true;
             this.tileset3.Name = "tileset3";
-            this.tileset3.Size = new System.Drawing.Size(146, 22);
+            this.tileset3.Size = new System.Drawing.Size(186, 22);
             this.tileset3.Text = "PIRT Tileset";
             this.tileset3.Click += new System.EventHandler(this.tileset3_Click);
             // 
@@ -178,7 +184,7 @@ namespace SilicaTilesEditor
             // 
             this.tileset4.CheckOnClick = true;
             this.tileset4.Name = "tileset4";
-            this.tileset4.Size = new System.Drawing.Size(146, 22);
+            this.tileset4.Size = new System.Drawing.Size(186, 22);
             this.tileset4.Text = "FLWR Tileset";
             this.tileset4.Click += new System.EventHandler(this.tileset4_Click);
             // 
@@ -186,7 +192,7 @@ namespace SilicaTilesEditor
             // 
             this.tileset5.CheckOnClick = true;
             this.tileset5.Name = "tileset5";
-            this.tileset5.Size = new System.Drawing.Size(146, 22);
+            this.tileset5.Size = new System.Drawing.Size(186, 22);
             this.tileset5.Text = "JNGL Tileset";
             this.tileset5.Click += new System.EventHandler(this.tileset5_Click);
             // 
@@ -194,7 +200,7 @@ namespace SilicaTilesEditor
             // 
             this.tileset6.CheckOnClick = true;
             this.tileset6.Name = "tileset6";
-            this.tileset6.Size = new System.Drawing.Size(146, 22);
+            this.tileset6.Size = new System.Drawing.Size(186, 22);
             this.tileset6.Text = "CLWD Tileset";
             this.tileset6.Click += new System.EventHandler(this.tileset6_Click);
             // 
@@ -202,9 +208,16 @@ namespace SilicaTilesEditor
             // 
             this.tileset7.CheckOnClick = true;
             this.tileset7.Name = "tileset7";
-            this.tileset7.Size = new System.Drawing.Size(146, 22);
+            this.tileset7.Size = new System.Drawing.Size(186, 22);
             this.tileset7.Text = "VOLC Tileset";
             this.tileset7.Click += new System.EventHandler(this.tileset7_Click);
+            // 
+            // importPlacelistjsonToolStripMenuItem
+            // 
+            this.importPlacelistjsonToolStripMenuItem.Name = "importPlacelistjsonToolStripMenuItem";
+            this.importPlacelistjsonToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.importPlacelistjsonToolStripMenuItem.Text = "Import place_list.json";
+            this.importPlacelistjsonToolStripMenuItem.Click += new System.EventHandler(this.importWorldjsonToolStripMenuItem_Click);
             // 
             // lookingAt
             // 
@@ -243,6 +256,34 @@ namespace SilicaTilesEditor
             this.selTileId.Size = new System.Drawing.Size(89, 13);
             this.selTileId.TabIndex = 5;
             this.selTileId.Text = "Seleted Tile ID: 0";
+            // 
+            // viewMenu
+            // 
+            this.viewMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.viewMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.displayGridToolStripMenuItem,
+            this.renderAsPNGToolStripMenuItem});
+            this.viewMenu.Image = ((System.Drawing.Image)(resources.GetObject("viewMenu.Image")));
+            this.viewMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.viewMenu.Name = "viewMenu";
+            this.viewMenu.Size = new System.Drawing.Size(45, 22);
+            this.viewMenu.Text = "View";
+            // 
+            // displayGridToolStripMenuItem
+            // 
+            this.displayGridToolStripMenuItem.Checked = true;
+            this.displayGridToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.displayGridToolStripMenuItem.Name = "displayGridToolStripMenuItem";
+            this.displayGridToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.displayGridToolStripMenuItem.Text = "Display Grid";
+            this.displayGridToolStripMenuItem.Click += new System.EventHandler(this.displayGridToolStripMenuItem_Click);
+            // 
+            // renderAsPNGToolStripMenuItem
+            // 
+            this.renderAsPNGToolStripMenuItem.Name = "renderAsPNGToolStripMenuItem";
+            this.renderAsPNGToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.renderAsPNGToolStripMenuItem.Text = "Render to Image";
+            this.renderAsPNGToolStripMenuItem.Click += new System.EventHandler(this.renderAsPNGToolStripMenuItem_Click);
             // 
             // tileSelector
             // 
@@ -308,6 +349,10 @@ namespace SilicaTilesEditor
         public TileMapEditorControl tileList;
         public System.Windows.Forms.Label selTileId;
         public TileSelectorControl tileSelector;
+        private System.Windows.Forms.ToolStripMenuItem importPlacelistjsonToolStripMenuItem;
+        private System.Windows.Forms.ToolStripDropDownButton viewMenu;
+        private System.Windows.Forms.ToolStripMenuItem displayGridToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem renderAsPNGToolStripMenuItem;
     }
 }
 

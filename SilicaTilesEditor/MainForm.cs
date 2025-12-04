@@ -1,11 +1,18 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using System.Windows.Forms;
+using System.Text.Json;
+using System.Collections.Generic;
+using System.Linq;
+using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace SilicaTilesEditor
 {
     public partial class MainForm : Form
     {
+
         public MainForm()
         {
             InitializeComponent();
@@ -176,6 +183,46 @@ namespace SilicaTilesEditor
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Process.GetCurrentProcess().Kill();
+        }
+
+        private void importWorldjsonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDg = new OpenFileDialog();
+            openFileDg.Filter = "Json Files|*.json";
+            openFileDg.Title = "Json File";
+            openFileDg.FileName = "place_list.json";
+            if(openFileDg.ShowDialog() == DialogResult.OK)
+            {
+                Tileset.ImportPlacesJson(openFileDg.FileName);
+                MessageBox.Show("File loaded successfully.", "Open", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+        }
+
+        private void displayGridToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem itm = (ToolStripMenuItem)sender;
+            itm.Checked = !itm.Checked;
+            tileList.DisplayGrid = itm.Checked;
+            tileList.Invalidate();
+        }
+
+        private void renderAsPNGToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDg = new SaveFileDialog();
+            saveFileDg.Filter = "Portable Network Graphics Files|*.png";
+            saveFileDg.Title = "Select PNG";
+            saveFileDg.FileName = Path.ChangeExtension(Map.LoadedMap, ".png");
+            if (saveFileDg.ShowDialog() == DialogResult.OK)
+            {
+                Bitmap mapImg = new Bitmap(Map.Width * 32, Map.Height * 32);
+                Graphics g = Graphics.FromImage(mapImg);
+                tileList.RenderImage(g, new Rectangle(0, 0, Map.Width * 32, Map.Height * 32), true, false, false);
+
+                mapImg.Save(saveFileDg.FileName, ImageFormat.Png);
+
+                MessageBox.Show("PNG saved successfully.", "Save", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }

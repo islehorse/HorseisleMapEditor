@@ -16,7 +16,6 @@ namespace SilicaTilesEditor
         protected override void OnMouseClick(MouseEventArgs e)
         {
             int rW = (this.Size.Width - SystemInformation.VerticalScrollBarWidth);
-
             int maxX = (rW / 32)+1;
 
 
